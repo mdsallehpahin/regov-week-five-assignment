@@ -1,0 +1,17 @@
+{
+  "name": "balance_transfer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fabric-network": "^2.2.4",
+    "fabric-ca-client": "^2.2.4",
+    "js-yaml": "^3.12.0",
+    "fabric-shim": "^2.0.0"
+  }
+}
