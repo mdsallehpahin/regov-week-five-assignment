@@ -1,0 +1,14 @@
+cd /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network
+./network.sh down && ./network.sh up createChannel -ca -s couchdb && ./network.sh deployCC -ccn simpleChaincode -ccp ../regov/chaincodes/simpleChaincode -ccl javascript
+rm /home/salleh/go/src/github.com/hyperledger/fabric-samples/regov/applications/simple_chaincode/identity/user/balaji/wallet/user01.id
+rm /home/salleh/go/src/github.com/hyperledger/fabric-samples/regov/applications/simple_chaincode/gateway/connection-org1.yaml
+
+cp /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/connection-org1.yaml /home/salleh/go/src/github.com/hyperledger/fabric-samples/regov/applications/simple_chaincode/gateway/connection-org1.yaml
+cp /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/* /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/priv_sk
+cp /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/* /home/salleh/go/src/github.com/hyperledger/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem
+
+cd /home/salleh/go/src/github.com/hyperledger/fabric-samples/regov/applications/simple_chaincode
+node addToWallet
+node submitTransaction.js 'Admin@org1.example.com' emitEvent simple_event 'Hello, World!'
+
+node submitTransaction.js 'Admin@org1.example.com' put 'Account' id '1'
